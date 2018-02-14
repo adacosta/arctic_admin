@@ -53,16 +53,18 @@ $(function() {
 
   $(document).on('click', 'body', function(e) {
     var tabs = $('#tabs');
-    var width = Math.round(tabs[0].getBoundingClientRect().width);
-    if (tabs.css('left') == '0px') {
-      if (e.pageX > width && e.pageY > 60) {
-        if(animationDone == true) {
-          animationDone = false;
-          tabs.animate({
-            left: "-="+width
-          }, 400, function() {
-            animationDone = true;
-          });
+    if (tabs && tabs[0] && tabs[0].getBoundingClientRect) {
+      var width = Math.round(tabs[0].getBoundingClientRect().width);
+      if (tabs.css('left') == '0px') {
+        if (e.pageX > width && e.pageY > 60) {
+          if(animationDone == true) {
+            animationDone = false;
+            tabs.animate({
+              left: "-="+width
+            }, 400, function() {
+              animationDone = true;
+            });
+          }
         }
       }
     }
